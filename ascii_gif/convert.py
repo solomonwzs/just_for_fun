@@ -27,11 +27,11 @@ def resize_image(image, new_width=100, rate=1.0):
     return new_image
 
 
-def pixels2chars(image, range_width=50):
+def pixels2int(image, range_width=50):
     pixels_in_image = list(image.getdata())
-    pixels_to_chars = [chr(int(pixel_value / range_width))
-                       for pixel_value in pixels_in_image]
-    return "".join(pixels_to_chars)
+    pixels_to_int = [int(pixel_value / range_width)
+                     for pixel_value in pixels_in_image]
+    return pixels_to_int
 
 
 def image2ascii(image_path, new_width=120, mode="ascii"):
@@ -44,11 +44,11 @@ def image2ascii(image_path, new_width=120, mode="ascii"):
     image = resize_image(image, new_width, 0.5)
     image = image.convert('L')
 
-    chars = pixels2chars(image)
+    ilist = pixels2int(image)
     d = ASCII_CHARS if mode == "ascii" else COLOR_CHARS
     ascii_rows = [''.join(
-        [d[ord(c)] for c in chars[index: index + new_width]])
-        for index in range(0, len(chars), new_width)]
+        [d[i] for i in ilist[index: index + new_width]])
+        for index in range(0, len(ilist), new_width)]
     return '\n'.join(ascii_rows)
 
 
