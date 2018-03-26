@@ -16,9 +16,9 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -f FPS, --fps FPS     fps
-  -t TMP, --tmp TMP     directory for save tmp file
-  -m MODE, --mode MODE  ascii or color
+  -f FPS, --fps FPS     fps (default: 10)
+  -t TMP, --tmp TMP     directory for save tmp file (default: /tmp)
+  -m MODE, --mode MODE  ascii or color (default: ascii)
 ```
 
 ## Example
