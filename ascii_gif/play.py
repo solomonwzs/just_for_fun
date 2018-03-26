@@ -21,11 +21,11 @@ if __name__ == "__main__":
     parser.add_argument("file", type=str,
                         help="gif file")
     parser.add_argument("-f", "--fps", type=int, default=10,
-                        help="fps")
+                        help="fps (default: 10)")
     parser.add_argument("-t", "--tmp", type=str, default="/tmp",
-                        help="directory for save tmp file")
+                        help="directory for save tmp file (default: /tmp)")
     parser.add_argument("-m", "--mode", type=str, default="ascii",
-                        help="ascii or color")
+                        help="ascii or color (default: ascii)")
     args = parser.parse_args()
 
     if os.path.exists(args.tmp):
