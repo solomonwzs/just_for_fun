@@ -26,6 +26,10 @@ if __name__ == "__main__":
                         help="directory for save tmp file (default: /tmp)")
     parser.add_argument("-m", "--mode", type=str, default="ascii",
                         help="ascii or color (default: ascii)")
+    parser.add_argument("-w", "--width", type=int, default=120,
+                        help="width (default: 120)")
+    parser.add_argument("-a", "--accuracy", type=int, default=8,
+                        help="accuracy, 5-16 (default: 8)")
     args = parser.parse_args()
 
     if os.path.exists(args.tmp):
@@ -45,8 +49,11 @@ if __name__ == "__main__":
 
     signal.signal(signal.SIGINT, clean)
 
+    accuracy = args.accuracy
+
     img_frames = vdo2frames(args.file, ws, args.fps)
-    ascii_frames = [image2ascii(f, mode=args.mode) for f in img_frames]
+    ascii_frames = [image2ascii(f, args.width, args.mode, args.accuracy)
+                    for f in img_frames]
 
     nframes = len(ascii_frames)
     i = 0
