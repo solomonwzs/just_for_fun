@@ -1,14 +1,22 @@
 #!/usr/bin/python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#
+# @author   Solomon Ng <solomon.wzs@gmail.com>
+# @date     2022-10-11
+# @version  1.0
+# @license  MIT
 
 import os
 from subprocess import Popen, PIPE, STDOUT, run
 
 
-def vdo2frames(vdo_path, output_dir, fps=10, name="frame%05d.png"):
+def vdo2frames(
+    vdo_path: str, output_dir: str, fps: int = 10, name: str = "frame%08d.png"
+) -> list[str] | None:
     cmd = f"ffmpeg -i {vdo_path} -vf fps={fps} {output_dir}/{name}"
-    r = run(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT,
-            close_fds=True)
+    r = run(
+        cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True
+    )
     if r.returncode != 0:
         return None
 
